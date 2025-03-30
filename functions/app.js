@@ -2,13 +2,15 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
+const cors = require("cors");
 
 const app = express();
 const router = express.Router();
 const port = 9000;
 const serverless = require("serverless-http");
 
-// Middleware to parse JSON bodies
+// Middleware
+app.use(cors());
 app.use(bodyParser.json());
 
 router.get("/", (req, res) => {
