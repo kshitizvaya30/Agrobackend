@@ -1,0 +1,19 @@
+{
+  "name": "agro-products-api",
+  "version": "1.0.0",
+  "description": "API for handling product submissions",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "build": "netlify deploy --prod"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "netlify-cli": "^19.1.4",
+    "netlify-lambda": "^2.0.16",
+    "nodemailer": "^6.10.0",
+    "serverless-http": "^3.2.0"
+  }
+}
