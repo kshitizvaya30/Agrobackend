@@ -6,6 +6,7 @@ const nodemailer = require("nodemailer");
 const app = express();
 const router = express.Router();
 const port = 9000;
+const serverless = require("serverless-http");
 
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
@@ -21,7 +22,7 @@ router.post("/submit", async (req, res) => {
   // Validate required fields
   if (!name || !subject || !email || !message) {
     return res.status(400).json({
-      error: "All fields are required: name, text, phone, requirement",
+      error: "All fields are required: name, email, subject,   message",
     });
   }
 
@@ -75,11 +76,14 @@ router.post("/submit", async (req, res) => {
   }
 });
 
-app.use("/.netlify/functions/app", router);
+// Mount the router
+app.use("/", router);
+
+// Serverless function handler for production
 module.exports.handler = serverless(app);
 
 // Local development server
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== "production") {
   app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
   });
