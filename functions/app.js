@@ -22,7 +22,7 @@ router.post("/submit", async (req, res) => {
   // Validate required fields
   if (!name || !subject || !email || !message) {
     return res.status(400).json({
-      error: "All fields are required: name, email, subject,   message",
+      error: "All fields are required: name, email, subject, message",
     });
   }
 
@@ -80,6 +80,7 @@ router.post("/submit", async (req, res) => {
 app.use("/", router);
 
 // Serverless function handler for production
+app.use("/.netlify/functions/app", router);
 module.exports.handler = serverless(app);
 
 // Local development server
